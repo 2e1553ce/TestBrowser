@@ -12,6 +12,7 @@ import WebKit
 class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
     
     var webView: WKWebView
+    var firstLaunch: Bool
     
     @IBOutlet weak var barView: UIView!
     @IBOutlet weak var urlField: UITextField!
@@ -23,7 +24,8 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     @IBOutlet weak var progressView: UIProgressView!
     
     required init?(coder aDecoder: NSCoder) {
-        
+    
+        self.firstLaunch = true
         self.webView = WKWebView(frame: CGRectZero)
         super.init(coder: aDecoder)
         
@@ -59,6 +61,14 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         
         historyManager.getHistory()
         bookmarkManager.getBookmarks()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        firstLaunch = false
+        
         
     }
     

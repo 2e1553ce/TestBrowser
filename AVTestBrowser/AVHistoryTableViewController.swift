@@ -32,6 +32,6 @@ class AVHistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        navigationController?.popViewControllerAnimated(true)
+        // переход по ссылкам
     }
 }

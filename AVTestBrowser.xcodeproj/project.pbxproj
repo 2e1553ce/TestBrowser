@@ -1,0 +1,363 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		197E20A81DB686660009F5CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20A71DB686660009F5CD /* AppDelegate.swift */; };
+		197E20AD1DB686660009F5CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197E20AB1DB686660009F5CD /* Main.storyboard */; };
+		197E20B01DB686660009F5CD /* AVTestBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 197E20AE1DB686660009F5CD /* AVTestBrowser.xcdatamodeld */; };
+		197E20B21DB686660009F5CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197E20B11DB686660009F5CD /* Assets.xcassets */; };
+		197E20B51DB686660009F5CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197E20B31DB686660009F5CD /* LaunchScreen.storyboard */; };
+		197E20C51DB6B8AD0009F5CD /* AVBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20C41DB6B8AD0009F5CD /* AVBrowserViewController.swift */; };
+		197E20C71DB6B9490009F5CD /* AVHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20C61DB6B9490009F5CD /* AVHistory.swift */; };
+		197E20CA1DB6BA830009F5CD /* AVBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20C91DB6BA830009F5CD /* AVBookmarks.swift */; };
+		197E20CE1DB6BC480009F5CD /* AVHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20CC1DB6BC480009F5CD /* AVHistoryTableViewController.swift */; };
+		197E20CF1DB6BC480009F5CD /* AVBookmarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20CD1DB6BC480009F5CD /* AVBookmarksTableViewController.swift */; };
+		197E20EB1DB6C4ED0009F5CD /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20E91DB6C4ED0009F5CD /* History+CoreDataProperties.swift */; };
+		197E20EC1DB6C4ED0009F5CD /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20EA1DB6C4ED0009F5CD /* History.swift */; };
+		197E20EF1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20ED1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift */; };
+		197E20F01DB6C9A50009F5CD /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20EE1DB6C9A50009F5CD /* Bookmark.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		197E20A41DB686660009F5CD /* AVTestBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVTestBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		197E20A71DB686660009F5CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		197E20AC1DB686660009F5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		197E20AF1DB686660009F5CD /* AVTestBrowser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AVTestBrowser.xcdatamodel; sourceTree = "<group>"; };
+		197E20B11DB686660009F5CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		197E20B41DB686660009F5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		197E20B61DB686660009F5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		197E20C41DB6B8AD0009F5CD /* AVBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBrowserViewController.swift; sourceTree = "<group>"; };
+		197E20C61DB6B9490009F5CD /* AVHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistory.swift; sourceTree = "<group>"; };
+		197E20C91DB6BA830009F5CD /* AVBookmarks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBookmarks.swift; sourceTree = "<group>"; };
+		197E20CC1DB6BC480009F5CD /* AVHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHistoryTableViewController.swift; sourceTree = "<group>"; };
+		197E20CD1DB6BC480009F5CD /* AVBookmarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVBookmarksTableViewController.swift; sourceTree = "<group>"; };
+		197E20E91DB6C4ED0009F5CD /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "History+CoreDataProperties.swift"; path = "../History+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		197E20EA1DB6C4ED0009F5CD /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = ../History.swift; sourceTree = "<group>"; };
+		197E20ED1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bookmark+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		197E20EE1DB6C9A50009F5CD /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		197E20A11DB686660009F5CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		197E209B1DB686660009F5CD = {
+			isa = PBXGroup;
+			children = (
+				197E20A61DB686660009F5CD /* AVTestBrowser */,
+				197E20A51DB686660009F5CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		197E20A51DB686660009F5CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				197E20A41DB686660009F5CD /* AVTestBrowser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		197E20A61DB686660009F5CD /* AVTestBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				197E20C81DB6BA710009F5CD /* Models */,
+				197E20CB1DB6BC0F0009F5CD /* Controllers */,
+				197E20A71DB686660009F5CD /* AppDelegate.swift */,
+				197E20AB1DB686660009F5CD /* Main.storyboard */,
+				197E20B11DB686660009F5CD /* Assets.xcassets */,
+				197E20B31DB686660009F5CD /* LaunchScreen.storyboard */,
+				197E20B61DB686660009F5CD /* Info.plist */,
+				197E20AE1DB686660009F5CD /* AVTestBrowser.xcdatamodeld */,
+			);
+			path = AVTestBrowser;
+			sourceTree = "<group>";
+		};
+		197E20C81DB6BA710009F5CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				197E20C61DB6B9490009F5CD /* AVHistory.swift */,
+				197E20E91DB6C4ED0009F5CD /* History+CoreDataProperties.swift */,
+				197E20EA1DB6C4ED0009F5CD /* History.swift */,
+				197E20C91DB6BA830009F5CD /* AVBookmarks.swift */,
+				197E20ED1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift */,
+				197E20EE1DB6C9A50009F5CD /* Bookmark.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		197E20CB1DB6BC0F0009F5CD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				197E20C41DB6B8AD0009F5CD /* AVBrowserViewController.swift */,
+				197E20CC1DB6BC480009F5CD /* AVHistoryTableViewController.swift */,
+				197E20CD1DB6BC480009F5CD /* AVBookmarksTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		197E20A31DB686660009F5CD /* AVTestBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 197E20B91DB686660009F5CD /* Build configuration list for PBXNativeTarget "AVTestBrowser" */;
+			buildPhases = (
+				197E20A01DB686660009F5CD /* Sources */,
+				197E20A11DB686660009F5CD /* Frameworks */,
+				197E20A21DB686660009F5CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AVTestBrowser;
+			productName = AVTestBrowser;
+			productReference = 197E20A41DB686660009F5CD /* AVTestBrowser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		197E209C1DB686660009F5CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = A.V.;
+				TargetAttributes = {
+					197E20A31DB686660009F5CD = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 197E209F1DB686660009F5CD /* Build configuration list for PBXProject "AVTestBrowser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 197E209B1DB686660009F5CD;
+			productRefGroup = 197E20A51DB686660009F5CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				197E20A31DB686660009F5CD /* AVTestBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		197E20A21DB686660009F5CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197E20B51DB686660009F5CD /* LaunchScreen.storyboard in Resources */,
+				197E20B21DB686660009F5CD /* Assets.xcassets in Resources */,
+				197E20AD1DB686660009F5CD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		197E20A01DB686660009F5CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197E20EC1DB6C4ED0009F5CD /* History.swift in Sources */,
+				197E20F01DB6C9A50009F5CD /* Bookmark.swift in Sources */,
+				197E20EB1DB6C4ED0009F5CD /* History+CoreDataProperties.swift in Sources */,
+				197E20B01DB686660009F5CD /* AVTestBrowser.xcdatamodeld in Sources */,
+				197E20EF1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift in Sources */,
+				197E20CE1DB6BC480009F5CD /* AVHistoryTableViewController.swift in Sources */,
+				197E20CA1DB6BA830009F5CD /* AVBookmarks.swift in Sources */,
+				197E20C51DB6B8AD0009F5CD /* AVBrowserViewController.swift in Sources */,
+				197E20A81DB686660009F5CD /* AppDelegate.swift in Sources */,
+				197E20CF1DB6BC480009F5CD /* AVBookmarksTableViewController.swift in Sources */,
+				197E20C71DB6B9490009F5CD /* AVHistory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		197E20AB1DB686660009F5CD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				197E20AC1DB686660009F5CD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		197E20B31DB686660009F5CD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				197E20B41DB686660009F5CD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		197E20B71DB686660009F5CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		197E20B81DB686660009F5CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		197E20BA1DB686660009F5CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = AVTestBrowser/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aivar.vucins.AVTestBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AVTestBrowser-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		197E20BB1DB686660009F5CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = AVTestBrowser/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aivar.vucins.AVTestBrowser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AVTestBrowser-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		197E209F1DB686660009F5CD /* Build configuration list for PBXProject "AVTestBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197E20B71DB686660009F5CD /* Debug */,
+				197E20B81DB686660009F5CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		197E20B91DB686660009F5CD /* Build configuration list for PBXNativeTarget "AVTestBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197E20BA1DB686660009F5CD /* Debug */,
+				197E20BB1DB686660009F5CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		197E20AE1DB686660009F5CD /* AVTestBrowser.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				197E20AF1DB686660009F5CD /* AVTestBrowser.xcdatamodel */,
+			);
+			currentVersion = 197E20AF1DB686660009F5CD /* AVTestBrowser.xcdatamodel */;
+			path = AVTestBrowser.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 197E209C1DB686660009F5CD /* Project object */;
+}

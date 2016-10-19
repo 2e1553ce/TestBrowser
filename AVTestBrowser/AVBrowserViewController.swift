@@ -169,6 +169,7 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     
     func webView(webView: WKWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if navigationType == UIWebViewNavigationType.LinkClicked {
+            
             UIApplication.sharedApplication().openURL(request.URL!)
             return false
         }

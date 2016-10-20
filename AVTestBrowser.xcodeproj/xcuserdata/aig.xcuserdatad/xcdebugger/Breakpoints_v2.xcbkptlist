@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AVTestBrowser/AVBrowserViewController.swift"
-            timestampString = "498551533.635278"
+            filePath = "AVTestBrowser/Punycode.swift"
+            timestampString = "498693236.67678"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "init(delimiter:encodeTable:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

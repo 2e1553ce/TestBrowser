@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol AVHistoryTableViewControllerDelegate {
+    
+    func loadUrlFromHistory(url:String)
+}
+
 class AVHistoryTableViewController: UITableViewController {
+    
+    var delegate: AVHistoryTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,8 @@ class AVHistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // переход по ссылкам
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        self.delegate?.loadUrlFromHistory((historyManager.references[indexPath.row].name))
     }
 }

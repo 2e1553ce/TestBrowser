@@ -35,7 +35,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="RdQ-mL-sSU"/>
                                     <barButtonItem systemItem="compose" id="czc-Jf-jXC">
                                         <connections>
-                                            <segue destination="IEG-eT-haO" kind="show" id="ULE-a3-iMB">
+                                            <segue destination="IEG-eT-haO" kind="show" identifier="historyIdentifier" id="ULE-a3-iMB">
                                                 <nil key="action"/>
                                             </segue>
                                         </connections>
@@ -43,7 +43,7 @@
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="uYS-MI-rwm"/>
                                     <barButtonItem systemItem="bookmarks" id="BKC-in-8Co">
                                         <connections>
-                                            <segue destination="WEz-vc-3br" kind="show" id="yAp-uZ-VyY">
+                                            <segue destination="WEz-vc-3br" kind="show" identifier="bookmarksIdentifier" id="yAp-uZ-VyY">
                                                 <nil key="action"/>
                                             </segue>
                                         </connections>

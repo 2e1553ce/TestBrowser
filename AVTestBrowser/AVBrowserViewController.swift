@@ -9,10 +9,9 @@
 import UIKit
 import WebKit
 
-class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
+class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate, AVHistoryTableViewControllerDelegate, AVBookmarksTableViewControllerDelegate {
     
     var webView: WKWebView
-    var firstLaunch: Bool
     
     @IBOutlet weak var barView: UIView!
     @IBOutlet weak var urlField: UITextField!
@@ -25,11 +24,24 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     
     required init?(coder aDecoder: NSCoder) {
     
-        self.firstLaunch = true
         self.webView = WKWebView(frame: CGRectZero)
         super.init(coder: aDecoder)
         
         self.webView.navigationDelegate = self
+    }
+    
+    func loadUrlFromHistory(url: String) {
+        
+        webView.stopLoading()
+        
+        saveAndLoadUrl(true, url: url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+    }
+    
+    func loadUrlFromBookmarks(url: String) {
+        
+        webView.stopLoading()
+        
+        saveAndLoadUrl(false, url: url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
     }
     
     override func viewDidLoad() {
@@ -67,9 +79,6 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        firstLaunch = false
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,22 +95,10 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         
         urlField.resignFirstResponder()
         
-        let url = urlField.text!
+        var url = urlField.text!
+        url = decodeUrl(url)
         
-        if canOpenURL("http://" + url) {
-            
-            historyManager.addReference(url)
-            historyManager.saveHistory(url)
-        }
-        
-        if url.rangeOfString("http") != nil{
-            
-            webView.loadRequest(NSURLRequest(URL:NSURL(string: urlField.text!)!))
-        }
-        else {
-            
-            webView.loadRequest(NSURLRequest(URL:NSURL(string: "http://" +  urlField.text!)!))
-        }
+        saveAndLoadUrl(true, url: url)
         
         return false
     }
@@ -197,6 +194,8 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
             
             if shared.canOpenURL(url!) {
                 
+                //urlString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+                
                 webView.loadRequest(NSURLRequest(URL:NSURL(string: urlString)!))
                 
                 urlField.text = urlString
@@ -218,6 +217,17 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
+        
+        if segue.identifier == "historyIdentifier" {
+         
+            let historyViewController = segue.destinationViewController as! AVHistoryTableViewController
+            historyViewController.delegate = self
+            
+        } else {
+            
+            let bookmarkViewController = segue.destinationViewController as! AVBookmarksTableViewController
+            bookmarkViewController.delegate = self
+        }
     }
     
     // MARK: Helpers
@@ -242,6 +252,7 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     }
     
     func canOpenURL(string: String?) -> Bool {
+        
         guard let urlString = string else {return false}
         guard let url = NSURL(string: urlString) else {return false}
         if !UIApplication.sharedApplication().canOpenURL(url) {return false}
@@ -252,5 +263,57 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         return predicate.evaluateWithObject(string)
     }
     
+    func saveAndLoadUrl(isHistory: Bool, url: String) {
+            
+        if url.rangeOfString("http") != nil{
+            
+            //urlField.text = url
+            webView.loadRequest(NSURLRequest(URL:NSURL(string: url)!))
+            
+            historyManager.addReference(url)
+            historyManager.saveHistory(url)
+        }
+        else {
+            
+            //urlField.text = "http://" + url
+            
+            webView.loadRequest(NSURLRequest(URL:NSURL(string: "http://" +  url)!))
+            
+            historyManager.addReference("http://" + url)
+            historyManager.saveHistory("http://" + url)
+        }
+    }
+    
+    func decodeUrl(url: String) -> (String) {
+    
+        let punycode = Punycode.official
+        
+        let str = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        let urlComponents = NSURLComponents(string: str)
+        var host = urlComponents?.host
+        var path = urlComponents?.path
+        path = path!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        let separatedHost = host!.componentsSeparatedByString(".")
+        
+        var domen, zone : String
+        
+        if separatedHost.count == 2 {
+            
+            domen = "xn-" + punycode.encode(separatedHost[0])
+            zone = "xn-" + punycode.encode(separatedHost[1])
+            
+        } else {
+            
+            domen = "xn-" + punycode.encode(separatedHost[1])
+            zone = "xn-" + punycode.encode(separatedHost[2])
+        }
+        
+        
+        host = domen + "." + zone + path!
+        
+        return host!
+    }
 }
 

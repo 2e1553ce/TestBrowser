@@ -21,6 +21,7 @@
 		197E20EC1DB6C4ED0009F5CD /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20EA1DB6C4ED0009F5CD /* History.swift */; };
 		197E20EF1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20ED1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift */; };
 		197E20F01DB6C9A50009F5CD /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197E20EE1DB6C9A50009F5CD /* Bookmark.swift */; };
+		19E7BC751DB80C2C000F8971 /* Punycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E7BC741DB80C2C000F8971 /* Punycode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		197E20EA1DB6C4ED0009F5CD /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = ../History.swift; sourceTree = "<group>"; };
 		197E20ED1DB6C9A50009F5CD /* Bookmark+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bookmark+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		197E20EE1DB6C9A50009F5CD /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		19E7BC741DB80C2C000F8971 /* Punycode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Punycode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		197E20A61DB686660009F5CD /* AVTestBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				19E7BC741DB80C2C000F8971 /* Punycode.swift */,
 				197E20C81DB6BA710009F5CD /* Models */,
 				197E20CB1DB6BC0F0009F5CD /* Controllers */,
 				197E20A71DB686660009F5CD /* AppDelegate.swift */,
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E7BC751DB80C2C000F8971 /* Punycode.swift in Sources */,
 				197E20EC1DB6C4ED0009F5CD /* History.swift in Sources */,
 				197E20F01DB6C9A50009F5CD /* Bookmark.swift in Sources */,
 				197E20EB1DB6C4ED0009F5CD /* History+CoreDataProperties.swift in Sources */,
@@ -343,6 +347,7 @@
 				197E20BB1DB686660009F5CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

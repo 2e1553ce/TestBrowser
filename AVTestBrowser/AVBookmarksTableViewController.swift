@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol AVBookmarksTableViewControllerDelegate {
+    
+    func loadUrlFromBookmarks(url:String)
+}
+
 class AVBookmarksTableViewController: UITableViewController {
+    
+    var delegate: AVBookmarksTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +35,13 @@ class AVBookmarksTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return bookmarkManager.bookmarks.count
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        self.delegate?.loadUrlFromBookmarks((bookmarkManager.bookmarks[indexPath.row].name))
     }
 
 }

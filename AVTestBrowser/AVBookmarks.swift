@@ -20,21 +20,21 @@ class AVBookmark: NSObject {
     
     var bookmarks = [bookmark]()
     
-    func addBookmark(name: String){
+    func addBookmark(_ name: String){
         
         bookmarks.append(bookmark(name:name))
     }
     
     
-    func saveBookmark(reference: String) {
+    func saveBookmark(_ reference: String) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
         
-        let entity =  NSEntityDescription.entityForName("Bookmark", inManagedObjectContext: managedContext)
+        let entity =  NSEntityDescription.entity(forEntityName: "Bookmark", in: managedContext)
         
-        let bookmark = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        let bookmark = NSManagedObject(entity: entity!, insertInto:managedContext)
         
         bookmark.setValue(reference, forKey: "bookmarkReference")
         
@@ -50,15 +50,15 @@ class AVBookmark: NSObject {
     
     func getBookmarks() {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
         
-        let fetchRequest = NSFetchRequest(entityName:"Bookmark")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> =  NSFetchRequest(entityName:"Bookmark")
         
         do {
             
-            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
+            let fetchedResults = try managedContext.fetch(fetchRequest)
             
             let results = fetchedResults as! [Bookmark]
             

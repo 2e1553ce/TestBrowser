@@ -10,7 +10,7 @@ import UIKit
 
 protocol AVHistoryTableViewControllerDelegate {
     
-    func loadUrlFromHistory(url:String)
+    func loadUrlFromHistory(_ url:String)
 }
 
 class AVHistoryTableViewController: UITableViewController {
@@ -23,24 +23,24 @@ class AVHistoryTableViewController: UITableViewController {
         self.title = "История"
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "HistoryCell")
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "HistoryCell")
         
-        cell.textLabel?.text = historyManager.references[indexPath.row].name
+        cell.textLabel?.text = historyManager.references[(indexPath as NSIndexPath).row].name
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return historyManager.references.count
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         
-        self.delegate?.loadUrlFromHistory((historyManager.references[indexPath.row].name))
+        self.delegate?.loadUrlFromHistory((historyManager.references[(indexPath as NSIndexPath).row].name))
     }
 }

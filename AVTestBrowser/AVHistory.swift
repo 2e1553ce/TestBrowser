@@ -20,21 +20,21 @@ class AVHistory: NSObject {
     
     var references = [history]()
     
-    func addReference(name: String){
+    func addReference(_ name: String){
         
         references.append(history(name:name))
     }
 
 
-    func saveHistory(reference: String) {
+    func saveHistory(_ reference: String) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
 
-        let entity =  NSEntityDescription.entityForName("History", inManagedObjectContext: managedContext)
+        let entity =  NSEntityDescription.entity(forEntityName: "History", in: managedContext)
         
-        let history = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        let history = NSManagedObject(entity: entity!, insertInto:managedContext)
 
         history.setValue(reference, forKey: "reference")
 
@@ -50,15 +50,15 @@ class AVHistory: NSObject {
     
     func getHistory() {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
         
-        let fetchRequest = NSFetchRequest(entityName:"History")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName:"History")
         
         do {
             
-            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest)
+            let fetchedResults = try managedContext.fetch(fetchRequest)
             
             let results = fetchedResults as! [History]
             

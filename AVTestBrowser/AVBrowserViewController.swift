@@ -24,24 +24,24 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     
     required init?(coder aDecoder: NSCoder) {
     
-        self.webView = WKWebView(frame: CGRectZero)
+        self.webView = WKWebView(frame: CGRect.zero)
         super.init(coder: aDecoder)
         
         self.webView.navigationDelegate = self
     }
     
-    func loadUrlFromHistory(url: String) {
+    func loadUrlFromHistory(_ url: String) {
         
         webView.stopLoading()
         
-        saveAndLoadUrl(true, url: url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        saveAndLoadUrl(true, url: url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
     }
     
-    func loadUrlFromBookmarks(url: String) {
+    func loadUrlFromBookmarks(_ url: String) {
         
         webView.stopLoading()
         
-        saveAndLoadUrl(false, url: url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        saveAndLoadUrl(false, url: url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
     }
     
     override func viewDidLoad() {
@@ -54,29 +54,29 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         
-        let height = NSLayoutConstraint(item: webView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1, constant: -44)
-        let width = NSLayoutConstraint(item: webView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: webView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: -44)
+        let width = NSLayoutConstraint(item: webView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
         
         view.addConstraints([height, width])
         
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         
-        let url = NSURL(string:"http://www.google.com")
+        let url = URL(string:"http://www.google.com")
         urlField.text = "http://www.google.com"
-        let request = NSURLRequest(URL:url!)
+        let request = URLRequest(url:url!)
         
-        webView.loadRequest(request)
+        webView.load(request)
         
-        backButton.enabled = false
-        forwardButton.enabled = false
+        backButton.isEnabled = false
+        forwardButton.isEnabled = false
         
         historyManager.getHistory()
         bookmarkManager.getBookmarks()
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
     }
@@ -86,12 +86,12 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         barView.frame = CGRect(x:0, y: 0, width: size.width, height: 30)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         urlField.resignFirstResponder()
         
@@ -103,44 +103,44 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         return false
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<()>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if (keyPath == "loading") {
             
-            backButton.enabled = webView.canGoBack
-            forwardButton.enabled = webView.canGoForward
+            backButton.isEnabled = webView.canGoBack
+            forwardButton.isEnabled = webView.canGoForward
         }
         
         if (keyPath == "estimatedProgress") {
             
-            progressView.hidden = webView.estimatedProgress == 1
+            progressView.isHidden = webView.estimatedProgress == 1
             progressView.setProgress(Float(webView.estimatedProgress), animated: true)
         }
     }
     
     // MARK: Actions
     
-    @IBAction func back(sender: UIBarButtonItem) {
+    @IBAction func back(_ sender: UIBarButtonItem) {
         
         webView.goBack()
     }
     
-    @IBAction func forward(sender: UIBarButtonItem) {
+    @IBAction func forward(_ sender: UIBarButtonItem) {
         
         webView.goForward()
     }
     
-    @IBAction func reload(sender: UIBarButtonItem) {
+    @IBAction func reload(_ sender: UIBarButtonItem) {
         
-        let request = NSURLRequest(URL:webView.URL!)
-        webView.loadRequest(request)
+        let request = URLRequest(url:webView.url!)
+        webView.load(request)
     }
     
-    @IBAction func addBookmark(sender: UIBarButtonItem) {
+    @IBAction func addBookmark(_ sender: UIBarButtonItem) {
         
         let url = urlField.text!
         
-        if !backButton.enabled && !url.isEmpty {
+        if !backButton.isEnabled && !url.isEmpty {
             
             bookmarkManager.addBookmark("google.ru")
             bookmarkManager.saveBookmark("google.ru")
@@ -162,33 +162,33 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
     
     // MARK: WebView methods
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         
-        let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ок", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         progressView.setProgress(0.0, animated: false)
     }
     
-    func webView(webView: WKWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.LinkClicked {
+    func webView(_ webView: WKWebView, shouldStartLoadWithRequest request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
             
-            UIApplication.sharedApplication().openURL(request.URL!)
+            UIApplication.shared.openURL(request.url!)
             return false
         }
         return true
     }
     
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        if navigationAction.navigationType == WKNavigationType.LinkActivated {
+        if navigationAction.navigationType == WKNavigationType.linkActivated {
             
-            let url = navigationAction.request.URL
-            let shared = UIApplication.sharedApplication()
+            let url = navigationAction.request.url
+            let shared = UIApplication.shared
             
             let urlString = url!.absoluteString
             
@@ -196,7 +196,7 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
                 
                 //urlString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
                 
-                webView.loadRequest(NSURLRequest(URL:NSURL(string: urlString)!))
+                webView.load(URLRequest(url:URL(string: urlString)!))
                 
                 urlField.text = urlString
                 
@@ -204,15 +204,15 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
                 historyManager.saveHistory(urlString)
             }
             
-            decisionHandler(WKNavigationActionPolicy.Cancel)
+            decisionHandler(WKNavigationActionPolicy.cancel)
         }
         
-        decisionHandler(WKNavigationActionPolicy.Allow)
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
     
     // MARK: Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
@@ -220,55 +220,55 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         
         if segue.identifier == "historyIdentifier" {
          
-            let historyViewController = segue.destinationViewController as! AVHistoryTableViewController
+            let historyViewController = segue.destination as! AVHistoryTableViewController
             historyViewController.delegate = self
             
         } else {
             
-            let bookmarkViewController = segue.destinationViewController as! AVBookmarksTableViewController
+            let bookmarkViewController = segue.destination as! AVBookmarksTableViewController
             bookmarkViewController.delegate = self
         }
     }
     
     // MARK: Helpers
     
-    func showAlert(title:String, message:String){
+    func showAlert(_ title:String, message:String){
         
-        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             (result : UIAlertAction) -> Void in print("OK")
         }
         
         alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
         let delay = 1.0 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            alert.dismissViewControllerAnimated(true, completion: {
+        let time = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
+            alert.dismiss(animated: true, completion: {
                 
             })
         })
     }
     
-    func canOpenURL(string: String?) -> Bool {
+    func canOpenURL(_ string: String?) -> Bool {
         
         guard let urlString = string else {return false}
-        guard let url = NSURL(string: urlString) else {return false}
-        if !UIApplication.sharedApplication().canOpenURL(url) {return false}
+        guard let url = URL(string: urlString) else {return false}
+        if !UIApplication.shared.canOpenURL(url) {return false}
         
         //
-        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let regEx = "((https|http)://)(([а-яёa-z0-9]|-)+)(([.]|[/])(([а-яёa-z0-9]|-)+))+"
         let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
-        return predicate.evaluateWithObject(string)
+        return predicate.evaluate(with: string)
     }
     
-    func saveAndLoadUrl(isHistory: Bool, url: String) {
+    func saveAndLoadUrl(_ isHistory: Bool, url: String) {
             
-        if url.rangeOfString("http") != nil{
+        if url.range(of: "http") != nil{
             
             //urlField.text = url
-            webView.loadRequest(NSURLRequest(URL:NSURL(string: url)!))
+            webView.load(URLRequest(url:URL(string: url)!))
             
             historyManager.addReference(url)
             historyManager.saveHistory(url)
@@ -277,43 +277,83 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
             
             //urlField.text = "http://" + url
             
-            webView.loadRequest(NSURLRequest(URL:NSURL(string: "http://" +  url)!))
+            webView.load(URLRequest(url:URL(string: "http://" +  url)!))
             
             historyManager.addReference("http://" + url)
             historyManager.saveHistory("http://" + url)
         }
     }
     
-    func decodeUrl(url: String) -> (String) {
+    func decodeUrl(_ urlString: String) -> (String) {
+        
+        var url = urlString
+
+        if !url.hasPrefix("http"){
+            
+            url = "http://" + url
+        }
     
         let punycode = Punycode.official
         
-        let str = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let str = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
-        let urlComponents = NSURLComponents(string: str)
+        let urlComponents = URLComponents(string: str)
         var host = urlComponents?.host
         var path = urlComponents?.path
-        path = path!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        path = path!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
-        let separatedHost = host!.componentsSeparatedByString(".")
+        let separatedHost = host!.components(separatedBy: ".")
         
-        var domen, zone : String
+        var domen: String = ""
+        var zone: String = ""
+        
+        if separatedHost.count > 1 {
+            
+            let cyrillic = isCyrillic(separatedHost[1])
+            
+            if cyrillic {
+                
+                domen = "xn-"
+                zone = "xn-"
+            }
+        }
         
         if separatedHost.count == 2 {
             
-            domen = "xn-" + punycode.encode(separatedHost[0])
-            zone = "xn-" + punycode.encode(separatedHost[1])
+            domen += punycode.encode(separatedHost[0])
+            zone += punycode.encode(separatedHost[1])
             
-        } else {
+        } else if separatedHost.count > 2{
             
-            domen = "xn-" + punycode.encode(separatedHost[1])
-            zone = "xn-" + punycode.encode(separatedHost[2])
+            domen += punycode.encode(separatedHost[1])
+            zone += punycode.encode(separatedHost[2])
         }
         
         
         host = domen + "." + zone + path!
         
         return host!
+    }
+    
+    func isCyrillic(_ url: String) -> Bool {
+        
+        var cyrillic = true
+        
+        let scalars = url.unicodeScalars
+        
+        for (_, unicode) in scalars.enumerated() {
+            
+            if (unicode.value < 1024 || unicode.value > 1279) {
+                
+                // print("not a cyrillic text")
+                // print(unicode.value)
+                
+                cyrillic = false
+                break
+            }
+        }
+        
+        return cyrillic
     }
 }
 

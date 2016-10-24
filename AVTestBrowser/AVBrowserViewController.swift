@@ -30,14 +30,14 @@ class AVBrowserViewController: UIViewController, UITextFieldDelegate, WKNavigati
         self.webView.navigationDelegate = self
     }
     
-    func loadUrlFromHistory(_ url: String) {
+    func loadUrlFromHistory(url: String) {
         
         webView.stopLoading()
         
         saveAndLoadUrl(true, url: url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
     }
     
-    func loadUrlFromBookmarks(_ url: String) {
+    func loadUrlFromBookmarks(url: String) {
         
         webView.stopLoading()
         

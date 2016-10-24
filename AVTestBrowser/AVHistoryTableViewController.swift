@@ -10,7 +10,7 @@ import UIKit
 
 protocol AVHistoryTableViewControllerDelegate {
     
-    func loadUrlFromHistory(_ url:String)
+    func loadUrlFromHistory(url:String)
 }
 
 class AVHistoryTableViewController: UITableViewController {
@@ -39,8 +39,8 @@ class AVHistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
         
-        self.delegate?.loadUrlFromHistory((historyManager.references[(indexPath as NSIndexPath).row].name))
+        self.delegate?.loadUrlFromHistory(url: (historyManager.references[(indexPath as NSIndexPath).row].name))
     }
 }

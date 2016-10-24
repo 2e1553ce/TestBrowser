@@ -82,9 +82,6 @@ open class Punycode {
         
         for i in h ..< unicode.unicodeScalars.count {
             
-        print("\(unicode.unicodeScalars.count)")
-        //for var i in stride(from: 0, to: unicode.unicodeScalars.count, by: 1) {
-        //for var i = 0; h < unicode.unicodeScalars.count; { //i in stride(from: 0, to: 10, by: 1)
             let char = extendedChars[i]
             delta = delta + (char - n) * (h + 1)
             n = char
@@ -113,19 +110,6 @@ open class Punycode {
                         q = (q - t) / (self.base - t)
                         
                     } while true
-                    /*
-                    for var k = self.base; ; k += base {
-                        let t = max(min(k - bias, self.tMax), self.tMin)
-                        if q < t {
-                            break
-                        }
-                        
-                        let code = t + ((q - t) % (self.base - t))
-                        retval.append(self.encodeTable[code])
-                        
-                        q = (q - t) / (self.base - t)
-                    }
-                    */
                     
                     retval.append(self.encodeTable[q])
                     bias = self.adapt(delta, h + 1, h == b)
@@ -169,7 +153,7 @@ open class Punycode {
             output.append(contentsOf: input[0 ..< pos + 1])
         }
         
-        var outputLength = output.count
+        let outputLength = output.count
         let inputLength = input.count
         while pos < inputLength {
             let oldi = i
@@ -189,17 +173,6 @@ open class Punycode {
                 w = w * (self.base - t)
                 
             } while true
-            /*
-            for var k = self.base;; k += self.base {
-                let digit = self.decodeTable[input[pos + 1]]!
-                i = i + (digit * w)
-                let t = max(min(k - bias, self.tMax), self.tMin)
-                if (digit < t) {
-                    break
-                }
-                w = w * (self.base - t)
-            }
-            */
             
             bias = self.adapt(i - oldi, outputLength + 1, (oldi == 0))
             n = n + i / outputLength

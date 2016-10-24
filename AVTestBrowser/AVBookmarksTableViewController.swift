@@ -10,7 +10,7 @@ import UIKit
 
 protocol AVBookmarksTableViewControllerDelegate {
     
-    func loadUrlFromBookmarks(_ url:String)
+    func loadUrlFromBookmarks(url:String)
 }
 
 class AVBookmarksTableViewController: UITableViewController {
@@ -39,9 +39,9 @@ class AVBookmarksTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
         
-        self.delegate?.loadUrlFromBookmarks((bookmarkManager.bookmarks[(indexPath as NSIndexPath).row].name))
+        self.delegate?.loadUrlFromBookmarks(url: (bookmarkManager.bookmarks[(indexPath as NSIndexPath).row].name))
     }
 
 }
